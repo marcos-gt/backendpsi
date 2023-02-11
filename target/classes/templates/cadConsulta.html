@@ -1,0 +1,27 @@
+<h1>Pagina para cadastrar consulta</h1>
+<form class="justify-content-center align-items-center">
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <label for="data_consulta">Data</label>
+            <input type="date" class="form-control" id="data_consulta" placeholder="Data da consulta...">
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="valor">Valor</label>
+        <input type="text" class="form-control" id="valor" placeholder="Valor...">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="selecao">Selecione o Psicologo</label>
+        <select id="selecao">
+            <option th:each="psicologo:${psicologos}" th:value="${psicologo.cpf}" th:text="${psicologo.nome}"></option>
+        </select>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="cpf_paciente">CPF do Paciente</label>
+            <input type="text" class="form-control" id="cpf_paciente" placeholder="CPF do Paciente">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>

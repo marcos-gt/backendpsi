@@ -31,15 +31,14 @@ public class EvolucaoController {
         return "Evolução cadastrada com sucesso "+cpf;
         }
     @GetMapping("/evolucoesListar")
-    @CrossOrigin(origins = "http://127.0.0.1:5501/")
+    @CrossOrigin(origins = {"http://127.0.0.1:80","http://127.0.0.1:5501","http://20.127.88.33","http://20.127.88.33:80","http://localhost:5501"})
     public Page<Evolucao> visualizar(Pageable paginacao){
         Page<Evolucao> evolucaos = repository.findAll(paginacao);
         return evolucaos;
     }
 
-
     @GetMapping("/evolucoesListar/{cpf}")
-    @CrossOrigin(origins = "http://127.0.0.1:5501/")
+    @CrossOrigin(origins = {"http://127.0.0.1:80","http://127.0.0.1:5501","http://20.127.88.33","http://20.127.88.33:80","http://localhost:5501"})
     public Page<Evolucao> listar(@PathVariable String cpf, Pageable pageable){
         Page<Evolucao> evolucaos = servicoEvolucao.findByCpf(cpf,pageable);
         return evolucaos;

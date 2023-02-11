@@ -12,4 +12,6 @@ public interface ConsultaRepository extends JpaRepository<Consulta, String> {
     List<Consulta> findByPaciente_Cpf(String cpf);
 
 
+    @Query("SELECT c FROM consulta c WHERE c.data_consulta = :data")
+    List<Consulta> findByDataConsulta(Date data);
 }

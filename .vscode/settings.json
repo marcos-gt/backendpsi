@@ -1,0 +1,4 @@
+{
+    "appService.preDeployTask": "package:psique",
+    "appService.deploySubpath": "target/psique-0.0.1-SNAPSHOT.jar"
+}

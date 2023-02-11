@@ -15,8 +15,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -30,7 +33,7 @@ public class ConsultaController {
     private PsicologoServico servicoPsicologo;
     @PostMapping("cadastrarconsulta")
     @Transactional
-    @CrossOrigin(origins = "http://127.0.0.1:5501/")
+    @CrossOrigin(origins = {"http://127.0.0.1:80", "http://20.127.88.33","http://127.0.0.1:5501"})
     public ResponseEntity<?> cadastrar(@RequestBody @Valid DadosConsulta dados){
         return servicoConsulta.cadastrar(new Consulta(dados));
     }
@@ -61,9 +64,18 @@ public class ConsultaController {
     public List<Consulta> ListarPorCpf(@PathVariable String cpf){
         return repository.findByPaciente_Cpf(cpf);
     }
+
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @CrossOrigin(origins = {"http://127.0.0.1:80","http://127.0.0.1:5501","http://20.127.88.33","http://20.127.88.33:80","http://localhost:5501"})
+    @GetMapping("/listarConsulta/{data}")
+    public List<Consulta> listarPorData(@PathVariable String data) throws ParseException {
+        Date data_consulta = new SimpleDateFormat("yyyy-MM-dd").parse(data);
+        return servicoConsulta.findByData_consulta(data_consulta);
+    }
     @GetMapping("/listarConsulta")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @CrossOrigin(origins = "http://127.0.0.1:5501/")
+    @CrossOrigin(origins = {"http://127.0.0.1:80","http://127.0.0.1:5501","http://20.127.88.33","http://20.127.88.33:80","http://localhost:5501"})
     public Page<Consulta> Listar(Pageable paginacao){
         Page<Consulta> consultas = repository.findAll(paginacao);
         return consultas;

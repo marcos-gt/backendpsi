@@ -26,13 +26,13 @@ public class PsiController {
         servicoPsicologo.cadastro(new Psicologo(dados));
     }
     @GetMapping("/viewsPsi")
-    @CrossOrigin(origins = "http://127.0.0.1:5501/")
+    @CrossOrigin(origins = {"http://127.0.0.1:80","http://127.0.0.1:5501","http://20.127.88.33","http://20.127.88.33:80","http://localhost:5501"})
     public Page<Psicologo> visualizar(Pageable paginacao){
         Page<Psicologo> psicologos = servicoPsicologo.findAll(paginacao);
         return psicologos;
     }
     @GetMapping("/DadosSelectPsicologo")
-    @CrossOrigin(origins = "http://127.0.0.1:5501/")
+    @CrossOrigin(origins = {"http://127.0.0.1:80","http://127.0.0.1:5501","http://20.127.88.33","http://20.127.88.33:80","http://localhost:5501"})
     public List<DadosSelectPsicologo> listarAll(){
         List<Psicologo> psicologos = repository.findAll();
         List<DadosSelectPsicologo> dados = psicologos.stream().map(DadosSelectPsicologo::new).collect(Collectors.toList());

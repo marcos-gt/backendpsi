@@ -24,7 +24,7 @@ public class PacienteController {
 
     @PostMapping("/cadPaciente")
     @Transactional
-    @CrossOrigin(origins = "http://127.0.0.1:5501/")
+    @CrossOrigin(origins = {"http://127.0.0.1:80","http://127.0.0.1:5501","http://20.127.88.33","http://20.127.88.33:80","http://localhost:5501"})
     @PermitAll
     public ModelAndView cadastrar(@RequestBody @Valid DadosCadastroPaciente dados){
         ModelAndView mv = new ModelAndView("cadPaciente");
@@ -33,13 +33,13 @@ public class PacienteController {
     }
 
     @GetMapping("/listar")
-    @CrossOrigin(origins = "http://127.0.0.1:5501/")
+    @CrossOrigin(origins = {"http://127.0.0.1:80","http://127.0.0.1:5501","http://20.127.88.33","http://20.127.88.33:80","http://localhost:5501"})
     public Page<Paciente> visualizar(Pageable paginacao){
         Page<Paciente> pacientes = repository.findAll(paginacao);
         return pacientes;
     }
     @GetMapping("/listarAll")
-    @CrossOrigin(origins = "http://127.0.0.1:5501/")
+    @CrossOrigin(origins = {"http://127.0.0.1:80","http://127.0.0.1:5501","http://20.127.88.33","http://20.127.88.33:80","http://localhost:5501"})
     public List<DadosSelect> listarAll(){
         List<Paciente> pacientes = repository.findAll();
         List<DadosSelect> dados = pacientes.stream().map(DadosSelect::new).collect(Collectors.toList());

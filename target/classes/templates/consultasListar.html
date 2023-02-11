@@ -1,0 +1,25 @@
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Data da consulta</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Psicologo</th>
+            <th scope="col">Paciente</th>
+            <th scope="col">CPF Paciente</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="consulta:${consultas}" >
+
+            <th scope="row" th:text="${consulta.id}" ></th>
+            <td th:text="${#dates.format(consulta.data_consulta,'dd/MM/yyyy')}"></td>
+            <td th:text="${consulta.valor}"></td>
+            <td th:text="${consulta.psicologo.nome}"></td>
+            <td th:text="${consulta.paciente.nome}"></td>
+            <td th:text="${consulta.paciente.cpf}"></td>
+        </tr>
+    </table>
+</div>

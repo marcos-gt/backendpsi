@@ -27,13 +27,13 @@ public class IndexController {
 
     @PreAuthorize("hasAnyRole('ROLE_USER,ROLE_ADMIN')")
     @GetMapping("/index")
-    @CrossOrigin(origins = "http://127.0.0.1:5501")
+    @CrossOrigin(origins = {"http://127.0.0.1:80","http://127.0.0.1:5501","http://20.127.88.33","http://20.127.88.33:80","http://localhost:5501"})
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("index");
         return mv;
     }
     @PostMapping("/login")
-    @CrossOrigin(origins = "http://127.0.0.1:5501")
+    @CrossOrigin(origins = {"http://127.0.0.1:80","http://127.0.0.1:5501","http://20.127.88.33","http://20.127.88.33:80","http://localhost:5501"})
     public ResponseEntity<?> efetuarLogin(@RequestBody @Valid DadosAutenticacao dados){
         var authenticationToken = new UsernamePasswordAuthenticationToken(dados.username(), dados.password());
         var auth = authenticationManager.authenticate(authenticationToken);
